@@ -37,9 +37,18 @@ namespace DevIO.UI.Site
 
             app.UseRouting();
 
-            app.UseEndpoints(endpoint =>
+            //app.UseEndpoints(endpoint =>
+            //{
+            //    endpoint.MapControllerRoute("default","{controller=Home}/{action=Index}/{id?}");
+            //});
+            app.UseEndpoints(endpoints =>
             {
-                endpoint.MapControllerRoute("default","{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute(
+                  name: "areas",
+                  pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+                );
+
+                endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }
